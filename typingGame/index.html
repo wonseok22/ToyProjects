@@ -204,23 +204,22 @@
             typingText.addEventListener("click", () => inputField.focus())
         }   
         
-        function initTyping(){
+        function initTyping(){ // 키 타이핑할 경우
             const characters = typingText.querySelectorAll("span");
             let typedChar = inputField.value.split("")[charIndex]
-            console.log(inputField.value.split(""))
-            console.log(charIndex)
-            if(charIndex < characters.length-1 && timeLeft > 0) {
-                if(!isTyping){
+
+            if(charIndex < characters.length-1 && timeLeft > 0) { // 게임이 종료되지 않은 경우에만
+                if(!isTyping){  // 처음 눌렀을때만 작동 (타이머)
                 isTyping = true
                 timer = setInterval(initTimer,1000)
                 }
                 if(typedChar == null) { //지우기를 눌렀을때 
-                    charIndex--;
-                    if(characters[charIndex].classList.contains("incorrect")){
+                    charIndex--; 
+                    if(characters[charIndex].classList.contains("incorrect")){ // 틀린거 지우면 mistakes 감소
                         mistakes--;
                     }
                     characters[charIndex].classList.remove("correct", "incorrect")
-                }else {
+                }else { // 글자를 입력한 상황
                     if(characters[charIndex].innerText === typedChar){
                     characters[charIndex].classList.add("correct")
                     }else {
@@ -230,22 +229,25 @@
                     charIndex++;
                 }
 
-            
+                // 입력할 글자 하이라이트를 위한 작업
                 characters.forEach(span => span.classList.remove("active")); //지나간 부분 active를 다 지우고
-                characters[charIndex].classList.add("active")   //해당 부분에 active를 추가
+                characters[charIndex].classList.add("active")  //해당 부분에 active를 추가
+                
+                // 타이핑마다 mistakes 갱신
                 typingMistake.innerText = mistakes;
                 
-                
+                // 타자율 wpm과 cpm 계산
                 let wpm = Math.round((((charIndex - mistakes)/5) / (maxTime - timeLeft)) * 60);
                 wpm = wpm < 0 || !wpm || wpm == Infinity ? 0 : wpm;
                 typingWpm.innerText = wpm;
                 typingCpm.innerText = charIndex - mistakes;
             } else {
+                // 게임이 종료된 경우 타이머 종료
                 clearInterval(timer)
                 inputField.value = "";
             }
         }
-        function initTimer(){
+        function initTimer(){ // 시간 1초씩 감소
             if(timeLeft > 0){
                 timeLeft --;
                 typingTime.innerText = timeLeft;
@@ -253,7 +255,7 @@
                 clearInterval(timer)
             }
         }
-        function resetGame(){
+        function resetGame(){ // 게임 종료 및 try again 버튼 클릭 시 리셋
             randomParagraph()
             charIndex = mistakes = isTyping = 0;
             timer, maxTime = 60
@@ -265,7 +267,10 @@
             typingTime.innerText = timeLeft
             typingMistake.innerText = 0
         }
+        // 단어 랜덤 선택
         randomParagraph();
+
+        // 키 입력 시
         typingAgain.addEventListener("click", resetGame)
         inputField.addEventListener("input", initTyping);
 
