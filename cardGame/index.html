@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            width: 100%;
+            vertical-align: top;
+        }
+        body {
+            background: #7345fd;
+        }
+        .wrap__card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .card__inner {
+            width: 700px;
+            height: 700px;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+            width: 100%;
+            height: 100%;
+           
+        }
+        .cards li {
+            width: calc(100% / 4 - 20px);
+            height: calc(100% / 4 - 20px);
+            border: 1px solid #ccc;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            position: relative;  
+        }
+        .cards li .view {
+            position: absolute;
+            background:rgba(0, 0, 255, 0.2);
+            padding: 10%;
+            transition: transform 0.5s linear;
+            backface-visibility: hidden;
+            width: 100%;
+            height: 100%;
+            user-select: none;
+            pointer-events: none;
+        }
+        .cards li .view.front {
+            z-index: 10;
+            
+            transform: rotateY(0deg);
+        }
+        .cards li .view.back {
+            transform: rotateY(180deg);
+        }
+        .cards li.flip .view.front {
+            transform: rotateY(-180deg);
+        }
+        .cards li.flip .view.back {
+            transform: rotateY(0deg);
+        }
+        .cards li.shake {
+            animation: shake 0.35s ease-in-out;
+        }
+        @keyframes shake {
+            0% {transform: translateX(0);}
+            20% {transform: translateX(-13px);}
+            40% {transform: translateX(13px);}
+            60% {transform: translateX(-8px);}
+            80% {transform: translateX(8px);}
+            100% {transform: translateX(0);}
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap__card">
+        <div class="card__inner">
+            <ul class="cards">
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/aubergine.png" alt="aubergine.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/grapes.png" alt="grapes.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/carrot.png" alt="carrot.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/cherries.png" alt="cherries.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/toffee.png" alt="toffee.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/cherries.png" alt="cherries.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/aubergine.png" alt="aubergine.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/carrot.png" alt="carrot.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/cupcake.png" alt="cupcake.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/grapes.png" alt="grapes.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/meat.png" alt="meat">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/meat.png" alt="meat">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/strawberry.png" alt="strawberry.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/cupcake.png" alt="cupcake.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/strawberry.png" alt="strawberry.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="view front">
+                        <img src="./img/symbol-of-spades.png" alt="symbol-of-spades.png">
+                    </div>
+                    <div class="view back">
+                        <img src="./img/toffee.png" alt="toffee.png">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 01. HTML/CSS 디자인 구성
+        // 02. 클릭한 카드 뒤집기
+        // 03. 두 개의 카드 뒤집기 확인하기(첫번째, 두번째)
+        // 04. 클릭한 카드의 두개의 이미지 가져오기
+        // 05. 두개의 이미지 비교하기
+        // 06. 틀린 이미지 애니메이션 효과 주기
+        // 07. 빨리 클릭하면 버그 발생 처리하기
+
+        const cards =document.querySelectorAll(".cards li");
+
+        let cardOne, cardTwo;
+        // 07. 빨리 클릭하면 버그 발생 처리하기
+        let disableDeck = false;
+
+        function flipCard(e) {
+            let clickedCard = e.target;
+            
+            if(clickedCard !== cardOne && !disableDeck){
+                clickedCard.classList.add("flip");
+
+                if(!cardOne){
+                    return cardOne = clickedCard
+                }
+                cardTwo =clickedCard;
+                disableDeck = true;
+
+                let cardOneImg = cardOne.querySelector(".back img").src;
+                let cardTwoImg = cardTwo.querySelector(".back img").src;
+
+                matchCards(cardOneImg, cardTwoImg);
+            }
+        }
+        // 05. 두개의 이미지 비교하기
+        function matchCards(img1, img2){
+            if(img1 == img2){
+                cardOne.removeEventListener("click", flipCard);
+                cardTwo.removeEventListener("click", flipCard);
+                cardOne = cardTwo = "";
+                return disableDeck =false;
+            }else{
+                // 06. 틀린 이미지 애니메이션 효과 주기
+                setTimeout(() => {
+                    cardOne.classList.add("shake");
+                    cardTwo.classList.add("shake");
+                }, 400);
+
+                setTimeout(() => {
+                    cardOne.classList.remove("shake", "flip");
+                    cardTwo.classList.remove("shake", "flip");
+                    cardOne = cardTwo = "";
+                    return disableDeck =false;
+                }, 1200);
+            }
+        }
+
+        cards.forEach(card => {
+            card.addEventListener("click", flipCard);
+        });
+    </script>
+</body>
+</html>
