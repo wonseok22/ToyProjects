@@ -226,24 +226,17 @@
     </div>
 
     <script>
-        // 01. HTML/CSS 디자인 구성
-        // 02. 클릭한 카드 뒤집기
-        // 03. 두 개의 카드 뒤집기 확인하기(첫번째, 두번째)
-        // 04. 클릭한 카드의 두개의 이미지 가져오기
-        // 05. 두개의 이미지 비교하기
-        // 06. 틀린 이미지 애니메이션 효과 주기
-        // 07. 빨리 클릭하면 버그 발생 처리하기
+
 
         const cards =document.querySelectorAll(".cards li");
 
-        let cardOne, cardTwo;
-        // 07. 빨리 클릭하면 버그 발생 처리하기
+        let cardOne, cardTwo; // 선택한 카드
         let disableDeck = false;
 
         function flipCard(e) {
             let clickedCard = e.target;
             
-            if(clickedCard !== cardOne && !disableDeck){
+            if(clickedCard !== cardOne && !disableDeck){ 
                 clickedCard.classList.add("flip");
 
                 if(!cardOne){
@@ -258,7 +251,7 @@
                 matchCards(cardOneImg, cardTwoImg);
             }
         }
-        // 05. 두개의 이미지 비교하기
+        //두개의 이미지 비교하기
         function matchCards(img1, img2){
             if(img1 == img2){
                 cardOne.removeEventListener("click", flipCard);
@@ -266,7 +259,7 @@
                 cardOne = cardTwo = "";
                 return disableDeck =false;
             }else{
-                // 06. 틀린 이미지 애니메이션 효과 주기
+                //틀린 이미지 애니메이션 효과 주기
                 setTimeout(() => {
                     cardOne.classList.add("shake");
                     cardTwo.classList.add("shake");
