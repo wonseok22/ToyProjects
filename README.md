@@ -26,7 +26,7 @@ https://wonseok22.github.io/ToyProjects/cardGame
 
 ## 테트리스 (Tetris)
 
-2022.04
+2022.05
 
 HTML,CSS,Javascript를 공부하며 구현한 테트리스 게임입니다.
 
